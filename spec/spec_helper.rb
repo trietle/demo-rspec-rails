@@ -71,5 +71,6 @@ Spork.each_run do
   end
   load "#{Rails.root}/config/routes.rb"
   #Dir["#{Rails.root}/app/**/*.rb"].each { |f| load f }
+  FactoryGirl.reload
 end
 

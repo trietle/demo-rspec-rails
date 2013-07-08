@@ -3,20 +3,22 @@ require "spec_helper"
 # background is an alias for before
 # scenario for it, 
 # and given/given! aliases for let/let!
-feature 'home page' do
+feature 'Home page' do
   scenario 'Listing posts' do
     visit '/'
     page.should have_content('Listing posts')
   end
 end
 
-#feature "Widget management" do
-#  scenario "User creates a new widget" do
-#    visit "/widgets/new"
+feature "Post management" do
+  scenario "User creates a new post" do
+    visit "/posts/new"
+    fill_in "Title", :with => "My Post"
+    fill_in "Description", :with => "My Description"
+    page.check('Published')
+    click_button "Create Post"
 
-#    fill_in "Name", :with => "My Widget"
-#    click_button "Create Widget"
+    expect(page).to have_text("Post was successfully created.")
+  end
+end
 
-#    expect(page).to have_text("Widget was successfully created.")
-#  end
-#end
