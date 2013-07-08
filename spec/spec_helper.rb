@@ -26,8 +26,18 @@ Spork.prefork do
     config.infer_base_class_for_anonymous_controllers = false
 
     config.before(:suite) do
+      DatabaseCleaner.strategy = :transaction
+      DatabaseCleaner.clean_with(:truncation)
       #seed data
       #load "#{Rails.root}/db/seeds.rb"
+    end
+
+    config.before(:each) do
+      DatabaseCleaner.start
+    end
+
+    config.after(:each) do
+      DatabaseCleaner.clean
     end
 
     # Run specs in random order to surface order dependencies. If you find an
