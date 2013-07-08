@@ -21,16 +21,16 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
-group :test, :development do 
-  gem "rspec-rails", "~> 2.4"
-end
-
+gem 'factory_girl_rails'
 group :test do
   # automatically manage Spork DRb servers
   gem 'guard-spork'
-  gem 'factory_girl_rails'
-  gem 'simplecov'
+  gem 'simplecov', :require => false
+  gem 'database_cleaner'
+end
+
+group :test, :development do 
+  gem "rspec-rails", "~> 2.4"
 end
 #gem 'faker'
 
