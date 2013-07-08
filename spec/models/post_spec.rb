@@ -4,7 +4,7 @@ describe Post do
   #Generates a method whose return value is memoized after the first call.
   let(:new_post) { Post.new }
   let(:unpublished_post) { FactoryGirl.create :post }
-  let(:published_post) { create :published_post } # short from, just write create method
+  let(:published_post) { create :published_post } # short form, just write create method
 
   describe "should respond to" do
     #prefix # for instance method
@@ -21,6 +21,7 @@ describe Post do
   describe "#get_title" do
     context "when publish" do
       subject { published_post.get_title() }
+      it { should include(published_post.title) }
       it { should include('(P)') }
     end
 
@@ -29,4 +30,33 @@ describe Post do
       it { should eq(unpublished_post.title) }
     end
   end
+
+  describe ".find_published_post(id)" do
+    context "given id is nil" do
+      it { expect { Post.find_published_post(nil) }.to raise_error(ActiveRecord::RecordNotFound) }
+    end
+
+    describe "given id is not nil" do
+      describe "when post existed" do
+        context "and not publish" do
+          it { expect { Post.find_published_post(unpublished_post.id) }.to raise_error(ActiveRecord::RecordNotFound) }
+        end
+
+        context "and publish" do
+          subject { Post.find_published_post(published_post.id) }
+          it { should be_an_instance_of(Post) }
+          its(:id) { should eql(published_post.id) }
+        end
+      end
+
+      context "when post not existed" do
+        # currently, database is empty, with any id, say 10000
+        before { @id = 10000 }
+        it { expect { Post.find_published_post(@id) }.to raise_error(ActiveRecord::RecordNotFound) }
+      end
+    end
+
+
+  end
 end
+
