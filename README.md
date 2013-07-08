@@ -15,16 +15,15 @@ Start Spork
 guard
 ```
 
-Then, Run all Rspec with spork
+Then, Run RSpec with spork
 
 ```
 rake db:test:prepare
-bundle exec rspec
+bundle exec rspec # run all specs
+bundle exec rspec spec/models # # Run only model specs
 ```
 
 View coverage: open up coverage/index.html in your browser and check out what you've missed so far.
 
 Requires Ruby 1.9.2 or later to run.
-
-## Instructions
 
