@@ -2,12 +2,17 @@
 
 <p>
   <b>Title:</b>
-  <%= @post.title %>
+  <%= @post.get_title %>
 </p>
 
 <p>
   <b>Description:</b>
   <%= @post.description %>
+</p>
+
+<p>
+  <b>Is publish:</b>
+  <%= @post.published? %>
 </p>
 
 
