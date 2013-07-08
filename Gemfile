@@ -27,6 +27,8 @@ group :test do
   gem 'guard-spork'
   gem 'simplecov', :require => false
   gem 'database_cleaner'
+  gem 'capybara'
+  gem 'selenium-webdriver'
 end
 
 group :test, :development do 
