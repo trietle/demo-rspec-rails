@@ -1,5 +1,5 @@
 require "spec_helper"
-
+# https://github.com/jnicklas/capybara/blob/master/README.md
 # background is an alias for before
 # scenario for it, 
 # and given/given! aliases for let/let!
@@ -19,6 +19,7 @@ feature "Post management" do
     click_button "Create Post"
 
     expect(page).to have_text("Post was successfully created.")
+    #page.save_and_open_page
   end
 end
 
