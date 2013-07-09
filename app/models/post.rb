@@ -1,5 +1,7 @@
 class Post < ActiveRecord::Base
   attr_accessible :description, :title, :published
+  validates :title, :presence => true
+  #validates_presence_of :title
 
   def get_title
     if self.published?

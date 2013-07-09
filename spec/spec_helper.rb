@@ -14,13 +14,16 @@ Spork.prefork do
   #require 'rspec/autorun'
   require 'capybara/rspec'
   require 'capybara/rails'
+  
   Capybara.default_driver = :selenium
+  #Capybara.javascript_driver = :webkit
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
   RSpec.configure do |config|
     config.mock_with :rspec
+
     config.include FactoryGirl::Syntax::Methods
     # If true, the base class of anonymous controllers will be inferred
     # automatically. This will be the default behavior in future versions of
@@ -59,7 +62,7 @@ Spork.each_run do
       add_filter '/test/'
       add_filter '/config/'
 
-      add_group 'Controllers', 'app/controllers'
+      #add_group 'Controllers', 'app/controllers'
       add_group 'Models', 'app/models'
       #add_group 'Helpers', 'app/helpers'
       add_group 'Libraries', 'lib'

@@ -1,6 +1,14 @@
 require 'spec_helper'
 
 describe Post do
+  describe 'validations' do
+    it { should validate_presence_of(:title) }
+  end
+
+  describe 'associations' do
+    #it { belong_to(:user) }
+  end
+
   #Generates a method whose return value is memoized after the first call.
   let(:new_post) { Post.new }
   let(:unpublished_post) { FactoryGirl.create :post }
@@ -55,8 +63,6 @@ describe Post do
         it { expect { Post.find_published_post(@id) }.to raise_error(ActiveRecord::RecordNotFound) }
       end
     end
-
-
   end
 end
 
