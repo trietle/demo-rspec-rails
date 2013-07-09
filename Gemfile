@@ -22,17 +22,24 @@ end
 
 gem 'jquery-rails'
 gem 'factory_girl_rails'
+
+group :test, :development do
+  gem "rspec-rails", "~> 2.4"
+  gem 'faker'
+end
+
 group :test do
   # automatically manage Spork DRb servers
   gem 'guard-spork'
+  # Collection of testing matchers extracted from Shoulda
+  gem 'shoulda-matchers'
   gem 'simplecov', :require => false
   gem 'database_cleaner'
   gem 'capybara'
   gem 'selenium-webdriver'
+  #gem "capybara-webkit"
+  gem 'launchy'
 end
 
-group :test, :development do 
-  gem "rspec-rails", "~> 2.4"
-  gem 'faker'
-end
+
 
